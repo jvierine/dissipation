@@ -4,7 +4,7 @@ import numpy as n
 
 import scipy.optimize as sio
 
-def fit_dissipation_rate(s_h,R,err,epsilon0=10e-3,plot=False,c_k_p=0.5,c_k_std=0.1):
+def fit_dissipation_rate(s_h,R,err,epsilon0=10e-3,plot=False,c_k_p=2.0,c_k_std=0.1):
     print(R[0])
     s_h=s_h*1e3
     
@@ -45,7 +45,7 @@ if __name__ == "__main__":
 
     # Kolmogorov constant for inertial subrange in the
     # case of stratified turbulence (Riley and Lindborg, 2008)
-    c_k=2.0
+    c_k=0.5
 
     # correlation function
     # one for each day of the year

@@ -20,7 +20,8 @@ def fit_dissipation_rate(s_h,R,err,epsilon0=10e-3,plot=False,c_k_p=2.0,c_k_std=0
 
     def ss(x):
         R_model=model(x)
-        weighted_sum= n.sum(n.abs(R - R_model)**2.0/err**2.0) - n.log( (1.0/n.sqrt(0.3**2.0))*n.exp(-0.5*(x[2]-c_k_p)**2.0/c_k_std**2.0))
+        # use full log posteriori so that we can use mcmc later
+        weighted_sum= n.sum(n.log10(1.0/n.sqrt(2.0*n.pi*err**2.0))) + n.sum(n.abs(R - R_model)**2.0/err**2.0) - n.log( (1.0/n.sqrt(0.3**2.0))*n.exp(-0.5*(x[2]-c_k_p)**2.0/c_k_std**2.0))
         return(weighted_sum)
 
     x0=n.array([R[0],10e-3,c_k_p])
